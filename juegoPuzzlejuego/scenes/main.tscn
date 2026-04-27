@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dvity0wyv68cy"]
+
+[ext_resource type="Script" uid="uid://i3nu2psd4vk3" path="res://scripts/main.gd" id="1_bymbt"]
+[ext_resource type="Theme" uid="uid://yoxvktkljigt" path="res://resources/themes/ui_theme.tres" id="2_brtr4"]
+[ext_resource type="Theme" uid="uid://b20pecjb30omo" path="res://resources/themes/ui_secondary.tres" id="4_s0w80"]
+
+[node name="Main" type="Node2D" unique_id=3483349]
+script = ExtResource("1_bymbt")
+
+[node name="MainMenuUI" type="Control" parent="." unique_id=1808166159]
+texture_filter = 1
+custom_minimum_size = Vector2(216, 384)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 216.0
+offset_bottom = 384.0
+theme = ExtResource("2_brtr4")
+
+[node name="Background" type="ColorRect" parent="MainMenuUI" unique_id=216253260]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.129412, 0.180392, 0.215686, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenuUI/Background" unique_id=1352049015]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MainMenuUI/Background/MarginContainer" unique_id=1742972596]
+layout_mode = 2
+alignment = 1
+
+[node name="NewGame" type="Button" parent="MainMenuUI/Background/MarginContainer/HBoxContainer" unique_id=582104567]
+layout_mode = 2
+text = "New Game"
+
+[node name="Exit" type="Button" parent="MainMenuUI/Background/MarginContainer/HBoxContainer" unique_id=2146602371]
+layout_mode = 2
+theme = ExtResource("4_s0w80")
+text = "Exit"
+
+[connection signal="pressed" from="MainMenuUI/Background/MarginContainer/HBoxContainer/NewGame" to="." method="_on_btn_new_game_pressed"]
+[connection signal="pressed" from="MainMenuUI/Background/MarginContainer/HBoxContainer/Exit" to="." method="_on_btn_exit_pressed"]

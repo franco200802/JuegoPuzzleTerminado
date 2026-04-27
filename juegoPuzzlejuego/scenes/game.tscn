@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://b6do74c8c254k"]
+
+[ext_resource type="Script" uid="uid://cy8gkwlm1md33" path="res://scripts/game_ui.gd" id="1_tn0mm"]
+[ext_resource type="Script" uid="uid://b0es455y482mm" path="res://scripts/score_manager.gd" id="2_btnxs"]
+[ext_resource type="Theme" uid="uid://yoxvktkljigt" path="res://resources/themes/ui_theme.tres" id="3_dsy0w"]
+[ext_resource type="Script" uid="uid://c0yh0ek3rj3i0" path="res://scripts/score.gd" id="4_0ssm6"]
+[ext_resource type="FontFile" uid="uid://dy6jpbjio7hxq" path="res://assets/fonts/fffforwad.ttf" id="5_a2ccs"]
+[ext_resource type="Script" uid="uid://b8tnrvs72lksr" path="res://scripts/shuffles.gd" id="6_m5hg8"]
+[ext_resource type="Script" uid="uid://bamp0wig0232u" path="res://scripts/progress_bar.gd" id="7_jogc1"]
+[ext_resource type="Texture2D" uid="uid://cr7hmrj7607f1" path="res://assets/drawables/9pr_grid.png" id="9_2i22a"]
+[ext_resource type="Script" uid="uid://cv3mfclxofeb" path="res://scripts/button_shuffle.gd" id="10_lw0op"]
+[ext_resource type="Script" uid="uid://gksfnf6ses0c" path="res://debug/actions.gd" id="11_rwufq"]
+[ext_resource type="Script" uid="uid://b8vxdqvi2d7b7" path="res://scripts/grid.gd" id="12_yw37i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ff3w3"]
+bg_color = Color(0.894118, 0.490196, 0.294118, 1)
+border_width_bottom = 2
+border_color = Color(0.894118, 0.490196, 0.294118, 1)
+anti_aliasing = false
+
+[node name="GameUI" type="Control" unique_id=407320052]
+texture_filter = 1
+custom_minimum_size = Vector2(216, 384)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 216.0
+offset_bottom = 384.0
+script = ExtResource("1_tn0mm")
+
+[node name="ScoreManager" type="Node2D" parent="." unique_id=1606647353 node_paths=PackedStringArray("progress", "level", "button", "score")]
+script = ExtResource("2_btnxs")
+progress = NodePath("../HBoxContainer/TopBar/HBoxContainer/MarginContainer/CurrentLevelProgress")
+level = NodePath("../HBoxContainer/TopBar/HBoxContainer/HBoxContainer/Level")
+button = NodePath("../HBoxContainer/BottomBar/MarginContainer/HBoxContainer/Shuffle")
+score = NodePath("../HBoxContainer/TopBar/HBoxContainer/HBoxContainer/Score")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1272623792]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0941176, 0.121569, 0.152941, 1)
+
+[node name="CoverFirstRow" type="ColorRect" parent="." unique_id=1005135826]
+z_index = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 0
+offset_top = 58.0
+offset_right = 216.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.121569, 0.152941, 1)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=990407542]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="ColorRect" parent="HBoxContainer" unique_id=1115675259]
+z_index = 1
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.129412, 0.180392, 0.215686, 1)
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HBoxContainer/TopBar" unique_id=837592956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer" type="MarginContainer" parent="HBoxContainer/TopBar/HBoxContainer" unique_id=253916621]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Score" type="Label" parent="HBoxContainer/TopBar/HBoxContainer/HBoxContainer" unique_id=2036737239]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme = ExtResource("3_dsy0w")
+theme_override_font_sizes/font_size = 18
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+justification_flags = 0
+script = ExtResource("4_0ssm6")
+
+[node name="Level" type="Label" parent="HBoxContainer/TopBar/HBoxContainer/HBoxContainer" unique_id=1815450567]
+z_index = 1
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("5_a2ccs")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_ff3w3")
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 2
+script = ExtResource("6_m5hg8")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TopBar/HBoxContainer" unique_id=1953591864]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Control" type="Control" parent="HBoxContainer/TopBar/HBoxContainer/MarginContainer" unique_id=1173094201]
+layout_mode = 2
+
+[node name="CurrentLevelProgress" type="ProgressBar" parent="HBoxContainer/TopBar/HBoxContainer/MarginContainer" unique_id=433121627]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dsy0w")
+value = 50.0
+script = ExtResource("7_jogc1")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1207793960]
+z_index = 2
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="GridBorder" type="NinePatchRect" parent="HBoxContainer/MarginContainer" unique_id=1109415504]
+layout_mode = 2
+texture = ExtResource("9_2i22a")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="BottomBar" type="ColorRect" parent="HBoxContainer" unique_id=343772243]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.129412, 0.180392, 0.215686, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/BottomBar" unique_id=1456468672]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/BottomBar/MarginContainer" unique_id=1592407147]
+layout_mode = 2
+alignment = 1
+
+[node name="Shuffle" type="Button" parent="HBoxContainer/BottomBar/MarginContainer/HBoxContainer" unique_id=2120306323]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_dsy0w")
+text = "Shuffle"
+script = ExtResource("10_lw0op")
+
+[node name="Debug_actions" type="VBoxContainer" parent="." unique_id=1604981330]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_top = 36.0
+offset_right = 820.0
+offset_bottom = -95.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+script = ExtResource("11_rwufq")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1482661069]
+
+[node name="Grid" type="Node2D" parent="CanvasGroup" unique_id=1430320863]
+position = Vector2(28, 61)
+script = ExtResource("12_yw37i")
+
+[connection signal="value_changed" from="HBoxContainer/TopBar/HBoxContainer/MarginContainer/CurrentLevelProgress" to="HBoxContainer/TopBar/HBoxContainer/MarginContainer/CurrentLevelProgress" method="_on_value_changed"]
+[connection signal="focus_entered" from="HBoxContainer/BottomBar/MarginContainer/HBoxContainer/Shuffle" to="HBoxContainer/BottomBar/MarginContainer/HBoxContainer/Shuffle" method="_on_focus_entered"]
+[connection signal="pressed" from="HBoxContainer/BottomBar/MarginContainer/HBoxContainer/Shuffle" to="ScoreManager" method="_on_btn_shuffle_pressed"]

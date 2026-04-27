@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://kb7l5f04hxbk"]
+
+[ext_resource type="Script" uid="uid://b5vu2ebuq4mpo" path="res://scripts/piece.gd" id="2_hwyn3"]
+[ext_resource type="Texture2D" uid="uid://crfv35hse2el3" path="res://assets/drawables/empty.png" id="2_v3wnf"]
+
+[node name="Piece" type="Node2D" unique_id=1800724731]
+script = ExtResource("2_hwyn3")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=250716859]
+custom_minimum_size = Vector2(32, 32)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("2_v3wnf")
+stretch_mode = 2
+
+[node name="Debug_index" type="Label" parent="." unique_id=1079135130]
+visible = false
+offset_left = 14.0
+offset_top = -20.0
+offset_right = 32.0
+theme_override_font_sizes/font_size = 12
+text = "0"
